@@ -20,16 +20,15 @@ app.use(session({
     saveUninitialized: true,
     secret: SESSION_SECRET,
     cookie: { maxAge: 1000 * 60 * 60 * 24 * 365 }
-})
+}));
 
 massive({
     connectionString = CONNECTION_STRING,
     ssl: { rejectUnauthorized: false }
-})
-        .then((dbInstance) => {
-            app.set('db', dbInstance);
-            console.log('db connected');
-        });
+}).then((dbInstance) => {
+    app.set('db', dbInstance);
+    console.log('db connected');
+});
 
 
 //Auth Endpoints
