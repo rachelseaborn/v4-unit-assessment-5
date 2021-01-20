@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require('cors');
 
 const session = require('express-session');
 
@@ -15,6 +16,8 @@ const app = express();
 
 app.use(express.json());
 
+app.use(cors());
+
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -23,7 +26,7 @@ app.use(session({
 }));
 
 massive({
-    connectionString = CONNECTION_STRING,
+    connectionString: CONNECTION_STRING,
     ssl: { rejectUnauthorized: false }
 }).then((dbInstance) => {
     app.set('db', dbInstance);
