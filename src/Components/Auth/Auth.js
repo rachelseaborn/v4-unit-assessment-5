@@ -24,29 +24,31 @@ class Auth extends Component {
   login() {
     axios.post('/api/auth/login', this.state)
       .then(res => {
+        this.props.history.push({ Dash })
         //code here
       })
       .catch(err => {
         console.log(err)
-        this.setState({errorMsg: 'Incorrect username or password!'})
+        this.setState({ errorMsg: 'Incorrect username or password!' })
       })
   }
 
   register() {
     axios.post('/api/auth/register', this.state)
       .then(res => {
+        this.props.history.push({ Dash })
         //code here
       })
       .catch(err => {
         console.log(err)
-        this.setState({errorMsg: 'Username taken!'})
+        this.setState({ errorMsg: 'Username taken!' })
       })
   }
 
   closeErrorMessage = () => {
     this.setState({
-      errorMsg: false, 
-      username: '', 
+      errorMsg: false,
+      username: '',
       password: ''
     })
   }

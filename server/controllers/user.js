@@ -27,7 +27,7 @@ module_exports = {
         const { username, password } = req.body;
         const db = req.app.get('db');
 
-        const foundUser = await db.check_user({ username });
+        const foundUser = await db.find_user_by_username({ username });
         if (!foundUser[0]) {
             return res.status(404).send('Username not found');
         }
@@ -36,8 +36,11 @@ module_exports = {
         if (!authenticated) {
             return res.status(401).send('Incorrect password');
         }
+        //Instead of delete, can create newUser object
 
         delete foundUser[0].password;
+
+        //req.session.user
 
         req.session.user = foundUser[0];
         res.status[202].send(req.session.user);
@@ -48,7 +51,11 @@ module_exports = {
         res.sendStatus(200);
     },
 
-    getUser: (req, res) => {
+    //const db = req.app.get('db')
+    //{id} = req.session.user
+    //const [user] = await db.get_user_info(id)
+
+    getUser: async (req, res) => {
         req.session.user = foundUser[0];
         if (foundUser[0]) {
             return res.status(302).send(req.session.user);
