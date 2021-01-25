@@ -3,7 +3,7 @@ const { getQueriesForElement } = require("@testing-library/react");
 
 
 
-module_exports = {
+module.exports = {
 
     register: async (req, res) => {
         const { username, password } = req.body;

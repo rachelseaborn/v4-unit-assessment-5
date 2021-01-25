@@ -22,7 +22,7 @@ class Dash extends Component {
   }
 
   componentDidMount() {
-    this.grabPosts(props.match.params.id);
+    this.grabPosts(this.props.match.params.id);
   }
 
   grabPosts() {

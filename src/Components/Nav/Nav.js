@@ -5,14 +5,15 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
-import { Auth } from './../Auth/Auth';
-import { Dash } from './../Dash/Dash';
-
 import homeLogo from './../../assets/home_logo.png';
 import newLogo from './../../assets/new_logo.png';
 import logoutLogo from './../../assets/shut_down.png';
 import './Nav.css';
-import reducer, { updateUser, logout } from '../../redux/reducer';
+import reducer from '../../redux/reducer';
+import updateUser from '../../redux/reducer';
+import logout from '../../redux/reducer';
+
+// import { updateUser, logout } from '../../redux/reducer';
 // import updateUser, logout from '../../redux/reducer';
 
 class Nav extends Component {
@@ -42,7 +43,7 @@ class Nav extends Component {
     return this.props.location.pathname !== '/' &&
       <div className='nav'>
         <div className='nav-profile-container'>
-          <div className='nav-profile-pic' style={{ backgroundImage=`url('${REDUX_STATE_PIC}')` }}></div>
+          <div className='nav-profile-pic' style={{ backgroundImage: `url('${this.getUser.profile_pic}')` }}></div>
           <p>{this.getUser}</p>
         </div>
         <div className='nav-links'>
@@ -64,8 +65,7 @@ function mapStateToProps(state) {
 
 //Gives Nav access to this.props.history so it can redirect the user
 
-// export default withRouter(Nav);
 
-// export default connect(mapStateToProps, { updateUser, logout }(Nav))
+export default withRouter(connect(mapStateToProps, { updateUser, logout })(Nav));
 
-export default withRouter(connect(mapStateToProps, { updateUser, logout }(Nav)))
+// export default withRouter(Nav)

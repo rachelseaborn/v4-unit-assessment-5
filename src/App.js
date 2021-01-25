@@ -1,8 +1,9 @@
-import React from 'react';
+// import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 
 import routes from './routes';
-import { Nav } from './Components/Nav/Nav';
+import Nav from './Components/Nav/Nav';
 import { render } from 'react-dom';
 
 // function App() {
